@@ -1,7 +1,7 @@
 {
     "name": "Turned MyApp",
-    "version": "0.8",
-    "slug": "binance_bot",
+    "version": "0.10",
+    "slug": "johns_app",
     "description": "My Fist App",
     "url": "https://github.com/jonathanicq/hassioAddonsTest",
     "arch": [
