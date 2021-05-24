@@ -5,7 +5,7 @@
   "description": "Add-on that prints 'Hello, world' to the log and exits",
   "url": "https://github.com/jonathanicq/hassioAddonsTest/testEnvironment",
   "startup": "once",
-  "boot": "manual",
+  "boot": "auto",
   "options": { "PUID": 0},
   "schema": { "PUID": "int"}, 
   "arch": ["amd64", "armv7", "armhf", "i386" , "aarch64"],
