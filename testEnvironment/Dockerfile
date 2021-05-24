@@ -8,7 +8,7 @@ RUN \
     apk add --no-cache build-base git moreutils gcc g++ musl-dev python3-dev libffi-dev openssl-dev cargo \
     && pip install --upgrade pip \
     && pip install -U pip \
-    && apt-get install -y iputils-ping \
+    && pip install iputils-ping \
     && git clone https://github.com/jonathanicq/hassioAddonsTest \
     && cd hassioAddonsTest/testEnvironment \
     && chmod a+x start.sh \
