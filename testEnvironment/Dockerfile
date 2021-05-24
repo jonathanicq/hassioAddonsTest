@@ -10,8 +10,8 @@ RUN \
     && pip install -U pip \
     && git clone https://github.com/jonathanicq/hassioAddonsTest \
     && mkdir /testEnvironment \
-    && cd /testEnvironment \
-    && python3 -m pip install -r requirements.txt
+    && cd /testEnvironment 
+#    && python3 -m pip install -r requirements.txt
  
 # Copy files
 COPY rootfs/ /testEnvironment/
