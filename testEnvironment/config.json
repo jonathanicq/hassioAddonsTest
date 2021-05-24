@@ -1,13 +1,19 @@
 {
   "name": "Demo Addon",
-  "version": "0.14",
+  "version": "0.15",
   "slug": "myaddon",
   "description": "Add-on that prints 'Hello, world' to the log and exits",
   "url": "https://github.com/jonathanicq/hassioAddonsTest/testEnvironment",
   "startup": "once",
   "boot": "auto",
-  "options": { "PUID": 0},
-  "schema": { "PUID": "int"}, 
+  "options": { 
+    "PUID": 0,
+    "PGID": 0
+  },
+  "schema": { 
+    "PUID": "int",
+    "PGID": "int"
+  }, 
   "arch": ["amd64", "armv7", "armhf", "i386" , "aarch64"],
   "map": [
     "config:rw",
@@ -22,5 +28,8 @@
   "full_access": true,
   "webui": "http://[HOST]:[PORT:9091]",
   "apparmor": "true",
-  "environment": {}
+  "environment": {
+    "PUID": "0",
+    "PGID": "0"
+  }
 }

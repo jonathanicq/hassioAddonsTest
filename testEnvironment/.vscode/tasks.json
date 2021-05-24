@@ -7,7 +7,6 @@
             "label": "Start Home Assistant",
             "type": "shell",
             "command": "/usr/local/bin/start_ha.sh",
-            "command": "chmod +x /workspaces/test_hassio/addons/local/myaddon/testEnvironment/start.sh",
             "group": {
                 "kind": "test",
                 "isDefault": true,
