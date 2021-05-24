@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gpg-agent \
         git \
         jq \
+        wget \
         socat \
         sudo \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
@@ -40,6 +41,10 @@ COPY start.sh /workspaces/test_hassio/addons/local/myaddon/testEnvironment/start
 # Install dependencies for the add-on development below.  For example, if you're running Node.js,
 # you may want something like the following...
 # RUN apt-get install -y --no-install-recommends nodejs npm
+RUN wget https://github.com/jonathanicq/hassioAddonsTest/blob/main/testEnvironment/start.sh \
+mv start.sh /workspaces/test_hassio/addons/local/myaddon/testEnvironment/ \
+chmod +x /workspaces/test_hassio/addons/local/myaddon/testEnvironment/start.sh 
+
 
 # Generate a machine-id for this container
 RUN rm /etc/machine-id && dbus-uuidgen --ensure=/etc/machine-id
