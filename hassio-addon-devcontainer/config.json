@@ -1,6 +1,6 @@
 {
   "name": "My Demo Addon",
-  "version": "0.1",
+  "version": "0.2",
   "slug": "myaddon",
   "description": "Add-on that prints 'Hello, world' to the log and exits",
   "url": "https://github.com/jonathanicq/hassioAddonsTest/hassio-addon-devcontainer",
