@@ -1,53 +1,42 @@
-# Home Assistant Add-on Devcontainer Template
+# Home assistant add-on: addons updater
+![Supports aarch64 Architecture][aarch64-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports armhf Architecture][armhf-shield] ![Supports armv7 Architecture][armv7-shield]
 
-### Summary
+## About
 
-This is a templated to ease development of Home Assistant add-ons inside of a VS Code [devcontainer](https://code.visualstudio.com/docs/remote/containers).
+This script allows to automatically update addons based on upstream new releases
 
-### Usage
+## Installation
 
-Simply copy the contents of this repository to the base directory of the add-on you are developing. Modify the files in the directory as needed.  
+The installation of this add-on is pretty straightforward and not different in
+comparison to installing any other Hass.io add-on.
 
-Your add-on will be appear in the `Local Add-ons` section of the Home Assistant "Add-on store" tab.
+1. [Add my Hass.io add-ons repository][repository] to your Hass.io instance.
+1. Install this add-on.
+1. Click the `Save` button to store your configuration.
+1. Make sure that the two ports are open on your router
+1. Start the add-on.
+1. Check the logs of the add-on to see if everything went well.
+1. Carefully configure the add-on to your preferences, see the official documentation for for that.
 
-#### VS Code Tasks
+## Configuration
 
-The following tasks are included for your convenience.
+No webUI. Set everything through configuration.
 
-- Start Home Assistant
+```yaml
+addon:
+  - slug: the slug name from your repo
+    beta: true/false ; should it look only for releases or prereleases ok
+    fulltag: true is for example "v3.0.1-ls67" false is "3.0.1"
+    repository: 'name/repo' coming from github
+    upstream: name/repo, example is 'linuxserver/docker-emby'
+gituser: your github username
+gituser: your github email
+gitpass: add your github password here, or a specific key if you have two factor identification enabled
+```
 
-This task will download and run a Home Assistant environment inside the container using the latest `dev` targets of Home Assistant and Home Assistant Core. It will be mapped to port 8123 (by default) on the host machine.
 
-- Run Home Assistant CLI - _Requires a running Home Assistant instance_
-
-This task will open a [Home Assistant CLI](https://github.com/home-assistant/cli) window inside VS Code.
-
-- Cleanup stale Home Assistant environment
-
-This task will nuke the data stored by Home Assistant (including the underlying Home Assistant Core). Can be used to revert to a pristine state before starting Home Assistant.
-
-### FAQ
-
-Q: How do I customize some-widget-or-another?
-
-A: There is almost no "black magic" going on here. Make sure to read up on how devcontainers work from the [official website](https://code.visualstudio.com/docs/remote/containers).
-
-Q: I read the docs. I still need help customizing some-widget-or-another!
-
-A: Come ask on [Discord](https://discordapp.com/invite/2Uath3J) in channel #devs_addon or #devs_supervisor.
-
-Q: How do I develop more than one add-on in the same Home Assistant instance?
-
-A: See [this issue](https://github.com/issacg/hassio-addon-devcontainer/issues/1).
-
-Q: Why are there 2 `Dockerfile`s?  
-
-A: The `.devcontainer\Dockerfile` is for your development environment. The `Dockerfile` in the root directory is to build your add-on.
-
-Q: I added `.devcontainer` to my `.dockerignore` and now things are broken.
-
-A: Don't. The `.dockerignore` is shared by both Dockerfiles, and by adding `.devcontainer` to your `.dockerignore`, you will break things in the devcontainer. Instead, use other means to avoid copying `.devcontainer` (and `.vscode` for that matter) in your "production" `Dockerfile`.
-
-Q: When installing my local add-on, I'm not seeing my latest changes. Instead, I see the functionality of the last published version of my add-on.
-
-A: Make sure that you remove the `image` key from your `config.json`, else when "installing" the add-on, it will try to use the docker image, rather than building the add-on locally.
+[repository]: https://github.com/alexbelgium/hassio-addons
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
