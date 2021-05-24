@@ -4,7 +4,6 @@ FROM $BUILD_FROM
 ENV LANG C.UTF-8
 
 WORKDIR /
-WGET https://github.com/jonathanicq/hassioAddonsTest/blob/main/testEnvironment/start.sh
 COPY start.sh /app/start.sh
 ENTRYPOINT ["/app/start.sh"]
 
