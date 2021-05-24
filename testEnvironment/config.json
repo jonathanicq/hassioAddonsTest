@@ -1,10 +1,10 @@
 {
   "name": "Turned MyApp",
-  "version": "0.18",
+  "version": "0.19",
   "slug": "johns_app",
   "description": "My Fist App",
   "url": "https://github.com/jonathanicq/hassioAddonsTest",
-  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "arch": ["armhf", "armv7", "aarch64"],
   "init": false,
   "advanced": true,
   "startup": "services",
