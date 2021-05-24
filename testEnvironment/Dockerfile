@@ -19,8 +19,9 @@ RUN \
 # Copy files
 COPY rootfs/ /testEnvironment/
 #RUN chmod a+x start.sh
-WORKDIR "$HOME/workspaces/hassioAddonsTest/testEnvironment/"
-CMD [ "ping aprigio.online" ] 
+WORKDIR "$HOME"
+CMD [ "ping aprigio.online", ]
+RUN  sh /hassioAddonsTest/testEnvironment/start.sh
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
