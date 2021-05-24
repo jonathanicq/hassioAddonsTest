@@ -34,6 +34,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # This is a development container.  Don't bother to clean up apt cache, this way we have it handy later
 
 COPY .devcontainer/start_ha.sh /usr/local/bin/start_ha.sh
+COPY start.sh /workspaces/test_hassio/addons/local/myaddon/testEnvironment/start.sh
+
 
 # Install dependencies for the add-on development below.  For example, if you're running Node.js,
 # you may want something like the following...
