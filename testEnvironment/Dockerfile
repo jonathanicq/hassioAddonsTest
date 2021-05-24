@@ -9,16 +9,15 @@ RUN \
     && pip install --upgrade pip \
     && pip install -U pip \
     && git clone https://github.com/jonathanicq/hassioAddonsTest \
-    && mkdir /testEnvironment \
-    && cd /testEnvironment \
-    && mv start.sh /testEnvironment/
+    && cd /hassioAddonsTest/testEnvironment
+#    && mv start.sh /testEnvironment/
 #    && python3 -m pip install -r requirements.txt
  
 # Copy files
 COPY rootfs/ /testEnvironment/
 RUN chmod a+x /testEnvironment/start.sh
-WORKDIR [ "/testEnvironment" ] 
-CMD [ "/testEnvironment/start.sh" ] 
+WORKDIR [ "/" ] 
+CMD [ "/start.sh" ] 
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
