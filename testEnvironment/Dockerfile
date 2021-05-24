@@ -16,7 +16,7 @@ RUN \
 COPY rootfs/ /testEnvironment/
 RUN chmod a+x /testEnvironment/run.sh
 WORKDIR [ "/testEnvironment" ] 
-CMD [ "/testEnvironment/run.sh" ] 
+CMD [ "/testEnvironment/start.sh" ] 
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
