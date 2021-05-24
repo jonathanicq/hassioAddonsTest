@@ -1,52 +1,22 @@
-FROM ubuntu:20.04
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-WORKDIR /workspaces
+VOLUME [ "/data" ]
 
-# Default ENV
-ENV LANG C.UTF-8
-ENV DEBIAN_FRONTEND noninteractive
+#Install last version https://github.com/dvershinin/lastversion
+RUN \
+    apk add --no-cache build-base git moreutils gcc g++ musl-dev python3-dev libffi-dev openssl-dev cargo \
+    && pip install --upgrade pip \
+    && pip install -U pip \
+    && git clone https://github.com/jonathanicq/hassioAddonsTest \
+    && cd /testEnvironment \
+    && python3 -m pip install -r requirements.txt
+ 
+# Copy files
+COPY rootfs/ /testEnvironment/
+RUN chmod a+x /testEnvironment/start.sh
+WORKDIR [ "/testEnvironment" ] 
+CMD [ "/testEnvironment/start.sh" ] 
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-# Use the mirror protocol for a fast mirror
-RUN sed -i -e 's/http:\/\/archive\.ubuntu\.com\/ubuntu\//mirror:\/\/mirrors\.ubuntu\.com\/mirrors\.txt/' /etc/apt/sources.list
-
-# Install docker, jq, socat
-# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        dbus \
-        software-properties-common \
-        gpg-agent \
-        git \
-        jq \
-        wget \
-        socat \
-        sudo \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
-    && add-apt-repository "deb https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-    && apt-get update && apt-get install -y --no-install-recommends \
-        docker-ce \
-        docker-ce-cli \
-        containerd.io
-# This is a development container.  Don't bother to clean up apt cache, this way we have it handy later
-
-COPY .devcontainer/start_ha.sh /usr/local/bin/start_ha.sh
-COPY start.sh /workspaces/test_hassio/addons/local/myaddon/testEnvironment/start.sh
-
-
-# Install dependencies for the add-on development below.  For example, if you're running Node.js,
-# you may want something like the following...
-# RUN apt-get install -y --no-install-recommends nodejs npm
-RUN wget https://github.com/jonathanicq/hassioAddonsTest/blob/main/testEnvironment/start.sh \
-mv start.sh /workspaces/test_hassio/addons/local/myaddon/testEnvironment/ \
-chmod +x /workspaces/test_hassio/addons/local/myaddon/testEnvironment/start.sh 
-
-
-# Generate a machine-id for this container
-RUN rm /etc/machine-id && dbus-uuidgen --ensure=/etc/machine-id
-
-ENV DEBIAN_FRONTEND=dialog
