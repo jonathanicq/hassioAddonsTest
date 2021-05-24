@@ -8,15 +8,15 @@ RUN \
     apk add --no-cache build-base git moreutils gcc g++ musl-dev python3-dev libffi-dev openssl-dev cargo \
     && pip install --upgrade pip \
     && pip install -U pip \
-    && git clone https://github.com/edeng23/binance-trade-bot \
-    && cd /binance-trade-bot \
+    && git clone https://github.com/jonathanicq/hassioAddonsTest \
+    && cd /testEnvironment \
     && python3 -m pip install -r requirements.txt
  
 # Copy files
-COPY rootfs/ /binance-trade-bot/
-RUN chmod a+x /binance-trade-bot/run.sh
-WORKDIR [ "/binance-trade-bot" ] 
-CMD [ "/binance-trade-bot/run.sh" ] 
+COPY rootfs/ /testEnvironment/
+RUN chmod a+x /testEnvironment/run.sh
+WORKDIR [ "/testEnvironment" ] 
+CMD [ "/testEnvironment/run.sh" ] 
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
