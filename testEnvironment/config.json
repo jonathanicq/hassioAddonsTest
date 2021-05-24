@@ -1,48 +1,47 @@
 {
-    "name": "Turned MyApp",
-    "version": "0.17",
-    "slug": "johns_app",
-    "description": "My Fist App",
-    "url": "https://github.com/jonathanicq/hassioAddonsTest",
-    "arch": [
-    "aarch64",
-    "amd64",
-    "armv7",
-    "armhf"
-  ],
-   "ports": {
-    },
-   "ports_description": {
-    }, 
-  "startup": "once",
-  "boot": "manual",
-  "environment": { 
-  "SUPPORTED_COIN_LIST": "XLM TRX ICX EOS IOTA ONT QTUM ETC ADA XMR DASH NEO ATOM DOGE VET BAT OMG BTT" 
+  "name": "Turned MyApp",
+  "version": "0.18",
+  "slug": "johns_app",
+  "description": "My Fist App",
+  "url": "https://github.com/jonathanicq/hassioAddonsTest",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "init": false,
+  "advanced": true,
+  "startup": "services",
+  "host_dbus": true,
+  "ingress": true,
+  "panel_icon": "mdi:console",
+  "panel_title": "Terminal",
+  "hassio_api": true,
+  "hassio_role": "manager",
+  "audio": true,
+  "uart": true,
+  "ports": {
+    "50022/tcp": null
   },
+  "map": [
+    "config:rw",
+    "ssl:rw",
+    "addons:rw",
+    "share:rw",
+    "backup:rw",
+    "media:rw"
+  ],
   "options": {
-  "APIKEY": "key",
-  "APISECRET": "key",
-  "CURRENTCOIN": "",
-  "BRIDGE": "BUSD",
-  "DOMAIN": "com",
-  "HISTORY": "1.0",
-  "SCOUTMULTI": "5.0",
-  "SCOUTSLEEP": "5.0",
-  "STRATEGY": "default",
-  "BUYTIMEOUT": "0.0",
-  "SELLTIMEOUT": "0.0"
+    "authorized_keys": [],
+    "apks": [],
+    "password": "",
+    "server": {
+      "tcp_forwarding": false
+    }
   },
   "schema": {
-  "APIKEY": "str",
-  "APISECRET": "str",
-  "CURRENTCOIN": "str",
-  "BRIDGE": "list(BUSD|USDT|BNB)",
-  "DOMAIN": "list(com|us)",
-  "HISTORY": "float",
-  "SCOUTMULTI": "float",
-  "SCOUTSLEEP": "float",
-  "STRATEGY": "list(default|multiple_coins|custom)",
-  "BUYTIMEOUT": "float",
-  "SELLTIMEOUT": "float"
-  }
+    "authorized_keys": ["str"],
+    "password": "password",
+    "server": {
+      "tcp_forwarding": "bool"
+    },
+    "apks": ["str"]
+  },
+  "image": "homeassistant/{arch}-addon-ssh"
 }
